@@ -14,7 +14,7 @@ html {
   block-size: 100%;
   margin: auto;
   color: #fff;
-  font-family: 'Fira Sans Condensed', sans-serif;
+  font-family: "Fira Sans Condensed", sans-serif;
   font-size: 18px;
   background-color: #1b1919;
 }
@@ -28,7 +28,8 @@ ul,
 ol,
 li,
 blockquote,
-fieldset {
+fieldset,
+form {
   margin: 0;
   padding: 0;
 }
@@ -48,7 +49,31 @@ ol {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
+}
+
+/*общий стиль для кнопок*/
+.button {
+  color: rgba(255, 255, 255, 1);
+  font-family: "Fira Sans Condensed";
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 1);
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .page {
@@ -56,106 +81,308 @@ ol {
   justify-content: center;
   align-items: center;
   height: 100%;
-  max-height: 800px;
-  min-height: 100vh;
   width: 100%;
+  max-height: 800px;
   max-width: 1200px;
-  padding: 133px 30px;
-  margin: 0;
+  padding: 11.08% 2.5%;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: auto;
 }
 
 .content {
   display: grid;
-  grid-template-rows: 1fr;
-  grid-template-columns: auto auto;
-  height: 100%;
-  max-width: 1140px;
-  width: 100%;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "result content";
   gap: 30px;
-  align-items: end;
+  align-self: flex-end;
+  width: 100%;
+  max-width: 1140px;
+  height: 100%;
+  max-height: 534px;
 }
 
+/*result-area*/
 .result {
-  max-height: 456px;
-  height: 100%;
-  max-width: 711px;
+  grid-area: result;
   width: 100%;
-  margin-top: 78px;
+  max-width: 711px;
+  height: 100%;
+  max-height: 534px;
 }
 
 .result__video-container {
-  max-height: 386px;
-  height: 100%;
+  padding-top: 10.98%;
   width: 100%;
-  margin-bottom: 16px;
+  max-width: 100%;
+  margin-bottom: 25px;
+  max-height: 456px;
+  position: relative;
+  z-index: 10;
 }
 
 .result__video {
+  width: 100%;
   object-fit: cover;
   object-position: center;
-  height: 100%;
-  width: 100%;
   max-height: 386px;
 }
 
+/* форма поиска*/
 .search-form {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
-  align-content: flex-start;
+  height: 100%;
+  max-height: 54px;
+  gap: 40px;
+}
+
+.search-form__fieldset {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 225px;
+}
+
+.search-form__fieldset-title {
+  font-family: "Fira Sans Condensed";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+}
+
+.search-form__label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+
+.search-form__textfield {
+  border: none;
+  outline: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  font-family: "Fira Sans Condensed";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  appearance: none;
+  width: 100%;
+  min-width: 225px;
+}
+
+.search-form__checkbox-list {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+}
+
+.search-form__pseudo-checkbox {
+  width: 19px;
+  height: 19px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+.search-form__submit-button {
+  width: 100%;
+  height: 100%;
+  max-width: 194px;
+  max-height: 34px;
+}
+
+/*стили состояния для формы поиска*/
+input[type='checkbox']:checked + span {
+  width: 19px;
+  height: 19px;
+  background-color: rgba(255, 255, 255, 1);
+  outline: 1px solid #1b1919;
+  outline-offset: -2px;
+}
+
+.search-form__label:focus-within:has(.search-form__checkbox:focus-visible) {
+  outline: 1px solid rgba(255, 255, 255, 1);
+  outline-offset: 1px;
+}
+
+.search-form__label-text:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-form__label:hover .search-form__label-text {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-form__label-text {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+.search-form__textfield:active {
+  outline: none;
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.search-form__textfield:focus-visible {
+  outline: 1px solid #fff;
+  outline-offset: 1px;
+}
+
+/* стили состояния для кнопок*/
+.button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.button:hover {
+  text-decoration: underline;
+}
+
+.button:active {
+  background-color: rgba(84, 80, 80, 1);
+}
+
+.button:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 1);
+  outline-offset: 1px;
+}
+
+/*секция content*/
+.content__details {
+  width: 100%;
+  height: 100%;
+  max-width: 399px; /*вот тут*/
+  max-height: 534px;
+  grid-area: content;
 }
 
 .title {
-  width: 100%;
-  max-width: 259px;
   height: 100%;
+  width: 100%;
   max-height: 210px;
+  max-width: 259px;
+  font-family: "Oswald";
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 94%;
+  text-transform: uppercase;
   margin-right: 140px;
 }
 
-.content__details {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  width: 100%;
-  max-width: 399px;
-  height: 100%;
-  max-height: 534px;
-  box-sizing: border-box;
+.content__accent {
+  color: rgba(84, 80, 80, 1);
 }
 
 .content__list-container {
-  height: 100%;
-  max-height: 298px;
   width: 100%;
+  height: 100%;
   max-width: 399px;
-  overflow: scroll;
+  max-height: 298px;
+  overflow: auto;
+  margin-top: 26px;
+  position: relative;
+  z-index: 10;
 }
 
 .content__list {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  justify-content: space-between;
+  padding: 2px 0 25px 0;
+  box-sizing: border-box;
+}
+
+.content__list-item {
+  outline: none;
+  border: none;
+  padding: 1px 3px 0 3px;
+}
+
+.content__card-link {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+}
+
+.content__card-link_current {
+  background-color: rgba(84, 80, 80, 1);
 }
 
 .content__video-card {
   display: flex;
-  flex-direction: row;
   align-items: flex-start;
-  justify-content: flex-start;
 }
 
 .content__video-card-description-container {
   flex-grow: 1;
 }
 
+.content__video-card-title {
+  font-family: "Oswald";
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 100%;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  overflow: hidden;
+  max-width: 196px;
+  padding-top: 1px;
+}
+
+.content__video-card-description {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+fieldset {
+  border: none;
+}
+
 .content__video-card-thumbnail {
-  width: 100%;
-  max-width: 194px;
-  height: 100%;
-  max-height: 103px;
+  width: 194px;
+  height: 103px;
   object-fit: cover;
   object-position: center;
+}
+
+.more-button {
+  width: 100%;
+  height: 100%;
+  max-height: 34px;
+  max-width: 390px;
+  margin: 2px;
+}
+
+/*стили состояний для content-area*/
+.content__video-card:focus {
+  outline-offset: none;
+  border: none;
+  box-shadow: none;
+}
+
+.content__video-card-description-container:hover {
+  text-decoration: 1px underline #fff;
+  text-underline-offset: 2px;
+}
+
+.content__video-card:active {
+  background-color: rgba(84, 80, 80, 1);
+}
+
+.content__video-card:focus-visible {
+  outline: 1px solid #fff;
 }
