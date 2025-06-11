@@ -108,7 +108,7 @@ ol {
   display: block;
   width: 100%;
   max-width: 711px;
-  max-height: 456px;
+  max-height: 464px; /*вот тут неверное значение было*/
   position: relative;
   z-index: 10;
   height: 100%;
